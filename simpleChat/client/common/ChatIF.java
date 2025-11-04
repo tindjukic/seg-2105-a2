@@ -2,7 +2,7 @@
 // "Object Oriented Software Engineering" and is issued under the open-source
 // license found at www.lloseng.com 
 
-package edu.seg2105.client.common;
+package simpleChat.client.common;
 
 /**
  * This interface implements the abstract method used to display

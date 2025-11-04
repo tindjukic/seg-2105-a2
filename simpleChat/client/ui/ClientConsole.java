@@ -1,4 +1,4 @@
-package edu.seg2105.client.ui;
+package simpleChat.client.ui;
 // This file contains material supporting section 3.7 of the textbook:
 // "Object Oriented Software Engineering" and is issued under the open-source
 // license found at www.lloseng.com 
@@ -6,8 +6,8 @@ package edu.seg2105.client.ui;
 import java.io.*;
 import java.util.Scanner;
 
-import edu.seg2105.client.backend.ChatClient;
-import edu.seg2105.client.common.*;
+import simpleChat.client.backend.ChatClient;
+import simpleChat.client.common.*;
 
 /**
  * This class constructs the UI for a chat client.  It implements the

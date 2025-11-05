@@ -48,7 +48,9 @@ public class EchoServer extends AbstractServer {
 	public void handleMessageFromClient(Object msg, ConnectionToClient client) {
 		String message = msg.toString();
 
-		if (message.startsWith("#login")) {
+		if (message.startsWith("#login")) {	
+			System.out.println("Message received: " + message + " from " + (String) client.getInfo("loginID"));
+
 			if (client.getInfo("loginID") != null) {
 				System.out.println("ERROR: Client " + client + " sent #login more than once. Terminating connection...");
 
@@ -80,8 +82,8 @@ public class EchoServer extends AbstractServer {
 
 			// Save the login ID
 			client.setInfo("loginID", loginID);
-			System.out.println(loginID + " has logged in from " + client);
-			this.sendToAllClients(loginID + " has joined the chat");
+			this.sendToAllClients(loginID + " has logged on.");
+			System.out.println(loginID + " has logged on.");
 		} else {
 			// Handle regular messages
 			String loginID = (String) client.getInfo("loginID");
@@ -104,19 +106,18 @@ public class EchoServer extends AbstractServer {
 			System.out.println("Message received: " + message + " from " + loginID);
 			this.sendToAllClients(prefixedMessage);
 		}
-
-		System.out.println("Message received: " + msg + " from " + client);
-		this.sendToAllClients(msg);
 	}
 
 	@Override 
 	protected void clientConnected(ConnectionToClient client) {
-		System.out.println("New client connected: " + client);
+		System.out.println("A new client has connected to the server.");
 	}
 
 	@Override 
 	synchronized protected void clientDisconnected(ConnectionToClient client) {
-		System.out.println("Client disconnected: " + client);
+		System.out.println((String) client.getInfo("loginID") + " has disconnected.");
+
+		client.setInfo("loginID", null);
 	}
 
 	/**

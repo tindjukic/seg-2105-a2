@@ -63,7 +63,7 @@ public class ServerConsole implements ChatIF {
                 case "stop":
                     if (server.isListening()) {
                         server.stopListening();
-                        display("Server stopped listening for new clients");
+                        //display("Server stopped listening for new clients");
                     } else {
                         display("ERROR: Server is already stopped");
                     }
@@ -73,7 +73,7 @@ public class ServerConsole implements ChatIF {
                     if (server.isListening() || server.getNumberOfClients() > 0) {
                         server.sendToAllClients("SERVER MSG> Server is closing connections");
                         server.close();
-                        display("Server stopped listening & disconnected all clients");
+                        //display("Server stopped listening & disconnected all clients");
                     } else {
                         display("ERROR: Server is already closed/stopped & has no clients");
                     }
@@ -95,7 +95,7 @@ public class ServerConsole implements ChatIF {
                 case "start": 
                     if (!server.isListening()) {
                         server.listen();
-                        display("Server started listening for new clients on port " + server.getPort());
+                        //display("Server started listening for new clients on port " + server.getPort());
                     } else {
                         display("ERROR: Server is already listening");
                     }

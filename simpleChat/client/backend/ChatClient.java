@@ -52,7 +52,7 @@ public class ChatClient extends AbstractClient {
 	@Override
 	protected void connectionEstablished() {
 		try {
-			sendToServer("#login" + this.loginID);
+			sendToServer("#login " + this.loginID);
 		} catch (IOException e) {
 			clientUI.display("ERROR: Could not send login command. Disconnecting...");
 			quit();
@@ -85,7 +85,7 @@ public class ChatClient extends AbstractClient {
 			try {
 				sendToServer(message);
 			} catch (IOException e) {
-				clientUI.display("Could not send message to server.  Terminating client.");
+				clientUI.display("Could not send message to server. Terminating client.");
 				quit();
 			}
 		}
@@ -105,7 +105,6 @@ public class ChatClient extends AbstractClient {
 			switch (cmd) {
 				case "quit":
 					clientUI.display("Client terminating...");
-					closeConnection();
 					quit();
 					break;
 				case "logoff":
@@ -168,8 +167,7 @@ public class ChatClient extends AbstractClient {
 
 	@Override 
 	protected void connectionClosed() {
-		clientUI.display("Server shutdown. Connection closed.");
-		quit();
+		clientUI.display("Connection closed.");
 	}
 
 	@Override
@@ -186,6 +184,7 @@ public class ChatClient extends AbstractClient {
 			closeConnection();
 		} catch (IOException e) {
 		}
+
 		System.exit(0);
 	}
 }
